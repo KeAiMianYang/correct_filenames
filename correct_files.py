@@ -11,17 +11,17 @@ mapreplace={
 }
 
 def correct_files (fullname, filename="."): # pathname is the absolute path
-    print("IN CORRECT_FILES: filename="+filename+", fullname="+fullname)
+    print("IN: "+fullname)
     if os.path.isfile(fullname):
-        print ("is file")
         return
     
     for fn in os.listdir(fullname): # listdir give the simple name of each file
-        newFilename = fn.strip()
-        newFilename = newFilename.translate(mapreplace)
+        new_fn_ext = os.path.splitext(fn)
+        newFilename = new_fn_ext[0].strip()+new_fn_ext[1] # strip outer spaces
+        newFilename = newFilename.translate(mapreplace) # correct chars
 
         newFullname = fullname+os.path.sep+newFilename
-        print("new filename :"+newFilename+", new fullname="+newFullname)
+        #print("new filename :"+newFilename+", new fullname="+newFullname)
         os.rename(fullname+os.path.sep+fn, newFullname)
 
         correct_files(fullname=newFullname, filename=newFilename)
