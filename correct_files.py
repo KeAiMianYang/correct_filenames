@@ -32,9 +32,9 @@ def correct_files (fullname, filename="."): # pathname is the absolute path
 if __name__ == '__main__':
     fullname = os.path.abspath(".")
     arg = "."
-    if len(sys.argv) >= 2:
-        arg = sys.argv[1]
-        fullname = os.path.abspath(arg)
+#    if len(sys.argv) >= 2:
+#        arg = sys.argv[1]
+#        fullname = os.path.abspath(arg)
 
     
     correct_files(filename=arg, fullname=fullname)
