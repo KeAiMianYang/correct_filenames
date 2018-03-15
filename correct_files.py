@@ -7,7 +7,8 @@ import sys
 mapreplace={
     ord('@'): 'at',
     ord('È'): 'E',
-    ord(','): '.'
+    ord(','): '.',
+    ord('#'): '_',
 }
 
 def correct_files (fullname, filename="."): # pathname is the absolute path
