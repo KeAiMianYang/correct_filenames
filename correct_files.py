@@ -4,11 +4,15 @@ import os
 import sys
 
 
-mapreplace={
+maptranslate={
     ord('@'): 'at',
     ord('È'): 'E',
     ord(','): '.',
     ord('#'): '_',
+}
+
+mapreplace={
+    '..': ' ',
 }
 
 def correct_files (fullname, filename="."): # pathname is the absolute path
@@ -19,7 +23,9 @@ def correct_files (fullname, filename="."): # pathname is the absolute path
     for fn in os.listdir(fullname): # listdir give the simple name of each file
         new_fn_ext = os.path.splitext(fn)
         newFilename = new_fn_ext[0].strip()+new_fn_ext[1] # strip outer spaces
-        newFilename = newFilename.translate(mapreplace) # correct chars
+        newFilename = newFilename.translate(maptranslate) # correct chars
+        for old, new in mapreplace.items():
+            newFilename = newFilename.replace(old, new)
 
         newFullname = fullname+os.path.sep+newFilename
         #print("new filename :"+newFilename+", new fullname="+newFullname)
