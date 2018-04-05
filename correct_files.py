@@ -39,7 +39,7 @@ if __name__ == '__main__':
 #    fullname = os.path.abspath(".")
 #    arg = "."
     if len(sys.argv) >= 2:
-        arg = sys.argv[1]
+        arg = sys.argv[1].strip()
     else:
         print("needs to give the folder to correct in argument")
         exit()
