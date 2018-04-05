@@ -15,7 +15,7 @@ mapreplace={
     '..': ' ',
 }
 
-def correct_files (fullname, filename="."): # pathname is the absolute path
+def correct_files (fullname, filename="."): # fullname is the absolute path
     print("IN: "+fullname)
     if os.path.isfile(fullname):
         return
@@ -36,11 +36,19 @@ def correct_files (fullname, filename="."): # pathname is the absolute path
 
 
 if __name__ == '__main__':
-    fullname = os.path.abspath(".")
-    arg = "."
-#    if len(sys.argv) >= 2:
-#        arg = sys.argv[1]
-#        fullname = os.path.abspath(arg)
-
+#    fullname = os.path.abspath(".")
+#    arg = "."
+    if len(sys.argv) >= 2:
+        arg = sys.argv[1]
+    else:
+        print("needs to give the folder to correct in argument")
+        exit()
+        
+    filename = arg.split("\\")[-1]
+    fullname = "/".join(arg.split("\\"))
+    print("filename: "+filename)
+    print("fullname: "+fullname)
+    answer = input("Do you want to renames the files inside the folder?\n(enter \"n\" if you want to cancel)\n")
     
-    correct_files(filename=arg, fullname=fullname)
+    if answer != "n":
+        correct_files(filename=filename, fullname=fullname)
